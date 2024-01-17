@@ -48,7 +48,7 @@ elif questions[0]["choices"][0]:
         {
             'type': 'input',
             'name': 'introduction',
-            'message': 'Write your intro',
+            'message': 'Write your introduction',
         }
     ]
 
