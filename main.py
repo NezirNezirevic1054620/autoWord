@@ -8,10 +8,10 @@ from classes.essay_generator import EssayGenerator
 
 welcome_prompt = [
     {
-        'type': 'confirm',
-        'message': 'Welcome to auto word generator! Would you like to proceed?',
-        'name': 'continue',
-        'default': True,
+        "type": "confirm",
+        "message": "Welcome to auto word generator! Would you like to proceed?",
+        "name": "continue",
+        "default": True,
     }
 ]
 
@@ -42,17 +42,19 @@ if list(welcome_prompt_answers.values())[0] is True:
                 "message": "Write your paragraph",
             },
             {
-                'type': 'confirm',
-                'message': 'Do you want to continue?',
-                'name': 'continue',
-                'default': True,
-            }
+                "type": "confirm",
+                "message": "Do you want to continue?",
+                "name": "continue",
+                "default": True,
+            },
         ]
 
         answers2 = prompt(questions2, style=custom_style_2)
 
         if list(answers2.values())[2] is True:
-            essay = EssayGenerator(title=list(answers2.values())[0], paragraph=list(answers2.values())[1])
+            essay = EssayGenerator(
+                title=list(answers2.values())[0], paragraph=list(answers2.values())[1]
+            )
             essay.generate_essay()
 
     elif questions[0]["choices"][1]:
@@ -68,10 +70,10 @@ if list(welcome_prompt_answers.values())[0] is True:
                 "message": "Write your introduction",
             },
             {
-                'type': 'confirm',
-                'message': 'Do you want to continue?',
-                'name': 'continue',
-                'default': True,
+                "type": "confirm",
+                "message": "Do you want to continue?",
+                "name": "continue",
+                "default": True,
             },
         ]
 
