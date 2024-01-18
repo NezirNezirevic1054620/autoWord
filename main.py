@@ -1,6 +1,4 @@
-from pprint import pprint
-
-from PyInquirer import prompt
+from PyInquirer import prompt, Separator
 from examples import custom_style_2
 
 from classes.cv_generator import CVGenerator
@@ -18,7 +16,7 @@ welcome_prompt = [
 welcome_prompt_answers = prompt(welcome_prompt, style=custom_style_2)
 
 if list(welcome_prompt_answers.values())[0] is True:
-    questions = [
+    generator_choice = [
         {
             "type": "list",
             "name": "word",
@@ -27,37 +25,23 @@ if list(welcome_prompt_answers.values())[0] is True:
         }
     ]
 
-    answers = prompt(questions, style=custom_style_2)
+    answers = prompt(generator_choice, style=custom_style_2)
 
-    if questions[0]["choices"][0]:
-        questions2 = [
+    if generator_choice[0]["choices"][0]:
+        essay_questions = [
             {
                 "type": "input",
                 "name": "title",
-                "message": "What is the name of your essay?",
-            },
-            {
-                "type": "input",
-                "name": "paragraph",
-                "message": "Write your paragraph",
-            },
-            {
-                "type": "confirm",
-                "message": "Do you want to continue?",
-                "name": "continue",
-                "default": True,
+                "message": "What is the name of your Essay?",
             },
         ]
 
-        answers2 = prompt(questions2, style=custom_style_2)
+        essay_answers = prompt(essay_questions, style=custom_style_2)
+        essay_answer = list(essay_answers.values())[0]
+        essay = EssayGenerator(title=essay_answer)
+        essay.generate_essay(message1=essay_answer)
 
-        if list(answers2.values())[2] is True:
-            essay = EssayGenerator(
-                title=list(answers2.values())[0], paragraph=list(answers2.values())[1]
-            )
-            essay.generate_essay()
-
-    elif questions[0]["choices"][1]:
+    elif generator_choice[0]["choices"][1]:
         questions3 = [
             {
                 "type": "input",
