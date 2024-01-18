@@ -5,7 +5,6 @@ from dotenv import load_dotenv
 
 
 class EssayGenerator:
-
     def __init__(self, title):
         self.title = title
 
@@ -29,10 +28,12 @@ class EssayGenerator:
         completion = client.chat.completions.create(
             model="gpt-3.5-turbo",
             messages=[
-                {"role": "system",
-                 "content": "You are a very skilled essay maker, your english grammar is perfect, you have a huge vocabulary, and you can make a structured essay with a introduction, and a conclusion"},
-                {"role": "user", "content": message}
-            ]
+                {
+                    "role": "system",
+                    "content": "You are a very skilled essay maker, your english grammar is perfect, you have a huge vocabulary, and you can make a structured essay with a introduction, and a conclusion",
+                },
+                {"role": "user", "content": message},
+            ],
         )
 
         document.add_paragraph(completion.choices[0].message.content)
